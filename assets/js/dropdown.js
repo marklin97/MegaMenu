@@ -26,7 +26,7 @@ function handleDropdownClick(event) {
 
 // Function to attach/detach event listeners based on window width
 function handleWindowResize() {
-  if (window.matchMedia("(min-width: 576px)").matches) {
+  if (window.matchMedia("(min-width: 768px)").matches) {
     // On larger screens, show dropdowns on hover and remove click event listeners
     dropdowns.forEach(function(dropdown) {
       dropdown.removeEventListener("click", handleDropdownClick);

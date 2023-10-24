@@ -75,6 +75,10 @@ strong {
     color: inherit !important;
 }
 
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
 /* Dropdown Styles */
 .dropdown {
     position: initial;
@@ -123,14 +127,14 @@ strong {
 }
 
 /* Responsive Design */
-@media screen and (min-width: 567px) {
+@media screen and (min-width: 768px) {
     .expanded-menu {
         width: 550px;
         margin-left: -5%;
     }
 }
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 768px) {
     .navbar-container {
         display: block;
     }
