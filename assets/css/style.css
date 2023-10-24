@@ -125,16 +125,17 @@ strong {
     background-repeat: no-repeat;
 }
 
-.dropdown:hover .dropdown-menu {
-    display: block;
-    margin-top: 0;
-}
 
 /* Responsive Design */
 @media screen and (min-width: 768px) {
     .expanded-menu {
         width: 550px;
         margin-left: -5%;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        margin-top: 0;
     }
 }
 
