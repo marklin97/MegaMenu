@@ -37,6 +37,7 @@ function handleWindowResize() {
       dropdown.addEventListener("mouseleave", hideDropdown);
     });
     adjustDropdownPosition();
+
   } else {
     // On smaller screens, show dropdowns on click and remove hover event listeners
     dropdowns.forEach(function (dropdown) {
@@ -57,29 +58,35 @@ function hideDropdown(event) {
   targetDropdown.querySelector(".dropdown-menu").classList.remove(showClass);
 }
 
-// Function to adjust the position of the dropdown menu relative to the navbar.
-// Ensures the dropdown menu aligns properly and does not extend beyond the viewport.
+// Function to adjust the position of the dropdown menu relative to the navbar
 function adjustDropdownPosition() {
   // Get the dropdown menu and navbar elements
   const dropdown = document.querySelector(".dropdown-menu");
-  const navbar = document.querySelector(".navbar-expand-md");
 
-  // Get the bounding rectangles and viewport width
+  // Get the bounding rectangle of the dropdown menu and viewport width
   const dropdownRect = dropdown.getBoundingClientRect();
-  const navbarRect = navbar.getBoundingClientRect();
   const viewportWidth = document.documentElement.clientWidth;
 
-  // Calculate the right position for the dropdown menu
+  // Calculate the left and right positions for the dropdown menu
+  const dropdownLeft = dropdownRect.left;
   const dropdownRight = viewportWidth - dropdownRect.right;
-  const navbarRight = viewportWidth -navbarRect.right;
 
-  // Adjust dropdown position if necessary to ensure proper alignment with the navbar
-  if (dropdownRight - navbarRight < 0) {
-    dropdown.style.right = navbarRight + "px";
+  // If the left edge is out of view, align with the left edge of the viewport
+  if (dropdownLeft < 0) {
+    dropdown.style.left = "0";
+    dropdown.style.right = "auto";
+  }
+  // If the right edge is out of view, align with the right edge of the viewport
+  else if (dropdownRight < 0) {
+    dropdown.style.right = "0";
+    dropdown.style.left = "auto";
+  }
+  // If both edges are within view, reset styles to default
+  else {
+    dropdown.style.left = "auto";
+    dropdown.style.right = "auto";
   }
 }
-
-
 // Add event listeners for page load and window resize events
 window.addEventListener("load", handleWindowResize);
 window.addEventListener("resize", handleWindowResize);
