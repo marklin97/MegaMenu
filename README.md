@@ -18,6 +18,6 @@ A responsive and dynamic mega navbar implementation for your website, allowing e
 
 ## Implementation
 
-- **Dynamic Dropdown Positioning:** The mega navbar adjusts the dropdown menu position in relation to the navbar, ensuring it stays within the navbar's boundaries to prevent overflow and maintains proper alignment within the viewport. You can confirm this by swapping the order of the dropdown tabs, ensuring the dropdown menu consistently remains within the visible range of the navbar.
+- **Dynamic Dropdown Positioning:** The mega navbar adjusts the dropdown menu position in relation to the navbar, ensuring it stays within the navbar's boundaries to prevent overflow and maintains proper alignment within the viewport.
 
 - **Responsive Design:** The mega navbar seamlessly adapts to various screen sizes, transitioning into a compact, touch-friendly menu below 768 pixels, ensuring effortless navigation on desktops and smartphones.

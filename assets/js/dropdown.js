@@ -36,6 +36,7 @@ function handleWindowResize() {
       dropdown.addEventListener("mouseenter", handleDropdownHover);
       dropdown.addEventListener("mouseleave", hideDropdown);
     });
+    adjustDropdownPosition();
   } else {
     // On smaller screens, show dropdowns on click and remove hover event listeners
     dropdowns.forEach(function (dropdown) {
@@ -56,7 +57,8 @@ function hideDropdown(event) {
   targetDropdown.querySelector(".dropdown-menu").classList.remove(showClass);
 }
 
-// Function to adjust the position of the dropdown menu relative to the navbar
+// Function to adjust the position of the dropdown menu relative to the navbar.
+// Ensures the dropdown menu aligns properly and does not extend beyond the viewport.
 function adjustDropdownPosition() {
   // Get the dropdown menu and navbar elements
   const dropdown = document.querySelector(".dropdown-menu");
@@ -67,27 +69,16 @@ function adjustDropdownPosition() {
   const navbarRect = navbar.getBoundingClientRect();
   const viewportWidth = document.documentElement.clientWidth;
 
-  // Calculate distances from edges of the navbar and dropdown menu
-  const navbarRight = navbarRect.right;
-  const dropdownRightEdge = dropdownRect.right;
-  const navbarLeft = navbarRect.left;
-  const dropdownLeftEdge = dropdownRect.left;
+  // Calculate the right position for the dropdown menu
+  const dropdownRight = viewportWidth - dropdownRect.right;
+  const navbarRight = viewportWidth -navbarRect.right;
 
-  // Calculate overflow distances from both sides of the navbar
-  const overflowRightDistance = dropdownRightEdge - navbarRight;
-  const overflowLeftDistance = dropdownLeftEdge - navbarLeft;
-
-  // Adjust dropdown position if it overflows to the left
-  if (overflowLeftDistance < 0) {
-    dropdown.style.left = navbarLeft + "px"; // Set dropdown's left position to navbar's left edge
-    dropdown.style.marginLeft = "0"; // Reset margin-left to 0
-  }
-
-  // Adjust dropdown position if it overflows to the right
-  if (overflowRightDistance > 0) {
-    dropdown.style.right = viewportWidth - navbarRight + "px"; // Set dropdown's right position to viewport's right edge
+  // Adjust dropdown position if necessary to ensure proper alignment with the navbar
+  if (dropdownRight - navbarRight < 0) {
+    dropdown.style.right = navbarRight + "px";
   }
 }
+
 
 // Add event listeners for page load and window resize events
 window.addEventListener("load", handleWindowResize);
