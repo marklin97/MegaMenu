@@ -98,7 +98,6 @@ strong {
     padding: 5px;
 }
 
-
 .dropdown-arrow {
     white-space: nowrap;
 }
@@ -137,6 +136,11 @@ strong {
 @media only screen and (max-width: 768px) {
     .navbar-container {
         display: block;
+    }
+
+    .navbar-container .rounded-start,
+    .navbar-container .rounded-end {
+        border-radius: 0 !important;
     }
 
     .dropdown.show>.nav-link {
