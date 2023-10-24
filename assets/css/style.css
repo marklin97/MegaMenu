@@ -1,0 +1,149 @@
+/* Font Definitions */
+@font-face {
+    font-family: "DroidSans";
+    src: url("../fonts/DroidSans.ttf");
+}
+
+@font-face {
+    font-family: "DroidSans-Bold";
+    src: url("../fonts/DroidSans.ttf");
+}
+
+/* Body and Text Styles */
+body {
+    font-family: "DroidSans", sans-serif;
+}
+
+strong {
+    font-family: "DroidSans-Bold", sans-serif;
+}
+
+.text-orange {
+    color: #ffa317;
+}
+
+.text-blue {
+    color: #2a8fbd;
+}
+
+/* Font Sizes */
+.fs-small {
+    font-size: 12px;
+}
+
+.fs-medium {
+    font-size: 14px;
+}
+
+.fs-large {
+    font-size: 16px;
+}
+
+/* Navbar Styles */
+.navbar {
+    padding: 0;
+}
+
+.navbar-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.expanded-menu {
+    border-top: none !important;
+    border-radius: 0;
+    padding: 15px 0;
+}
+
+.navbar-item {
+    text-align: center;
+    /* Fallback background color for non-supporting browsers */
+    background: #f2f2f2;
+    /* Standard syntax for modern browsers */
+    background: linear-gradient(to bottom, #ffffff, #f1f1f1);
+    /* WebKit browsers */
+    background: -webkit-linear-gradient(top, #ffffff, #f1f1f1);
+    /* Firefox */
+    background: -moz-linear-gradient(top, #ffffff, #f1f1f1);
+    /* Opera */
+    background: -o-linear-gradient(top, #ffffff, #f1f1f1);
+}
+
+.navbar-item .nav-link {
+    /* This will prevent bootstrap from changing the color of hover item into black */
+    color: inherit !important;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    position: initial;
+}
+
+.dropdown.show {
+    border-bottom: none !important;
+    background: #ffffff;
+}
+
+.nav-link,
+.dropdown-header {
+    user-select: none;
+}
+
+.dropdown-menu .nav-link {
+    padding: 5px;
+}
+
+
+.dropdown-arrow {
+    white-space: nowrap;
+}
+
+/* Hover Styles */
+.navbar-item .nav-link:hover {
+    background: #ffffff;
+}
+
+.dropdown-menu .nav-link:hover {
+    color: #2a8fbd !important;
+}
+
+.dropdown-arrow::after {
+    content: "";
+    /* Clear the default content */
+    display: inline-block;
+    margin-left: 8px;
+    vertical-align: 1px;
+    width: 10px;
+    height: 5px;
+    transform: translate(10px, 0px);
+    background-image: url("../images/dropdown-arrow.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Responsive Design */
+@media screen and (min-width: 567px) {
+    .expanded-menu {
+        width: 550px;
+        margin-left: -5%;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .navbar-container {
+        display: block;
+    }
+
+    .dropdown.show>.nav-link {
+        border-bottom: 1px solid #f5f5f5;
+    }
+
+    .navbar-item {
+        text-align: left;
+    }
+
+    .expanded-menu {
+        padding: 5px 0 10px 0;
+    }
+}
