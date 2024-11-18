@@ -2,16 +2,29 @@
 const dropdowns = document.querySelectorAll(".dropdown");
 const dropdownMenus = document.querySelectorAll(".dropdown-menu");
 const showClass = "show"; // CSS class used to display the dropdown menu
+let hoverTimeout;
 
 // Function to handle mouse enter event for dropdowns on large screens
 function handleDropdownHover(event) {
   const targetDropdown = event.currentTarget;
-  targetDropdown.classList.add(showClass); // Add "show" class to display the dropdown menu
-  targetDropdown
-    .querySelector(".dropdown-arrow")
-    .setAttribute("aria-expanded", "true");
-  targetDropdown.querySelector(".dropdown-menu").classList.add(showClass);
-  adjustDropdownPosition();
+  const dropdownMenu = targetDropdown.querySelector(".dropdown-menu");
+  
+  // Clear any existing timeout
+  clearTimeout(hoverTimeout);
+  
+  // Add delay before showing dropdown
+  hoverTimeout = setTimeout(() => {
+    // Set visibility before adding show class for smooth animation
+    dropdownMenu.style.visibility = 'visible';
+    
+    // Add show classes after a brief delay to ensure transition works
+    requestAnimationFrame(() => {
+      targetDropdown.classList.add(showClass);
+      targetDropdown.querySelector(".dropdown-arrow").setAttribute("aria-expanded", "true");
+      dropdownMenu.classList.add(showClass);
+      adjustDropdownPosition();
+    });
+  }, 200); // Adjust this delay (in milliseconds) to your preference
 }
 
 // Function to handle click event for dropdowns on small screens
@@ -50,12 +63,21 @@ function handleWindowResize() {
 
 // Function to handle mouse leave event for dropdowns
 function hideDropdown(event) {
+  // Clear the show timeout if it exists
+  clearTimeout(hoverTimeout);
+  
   const targetDropdown = event.currentTarget;
-  targetDropdown.classList.remove(showClass); // Remove "show" class to hide the dropdown menu
-  targetDropdown
-    .querySelector(".dropdown-arrow")
-    .setAttribute("aria-expanded", "false");
-  targetDropdown.querySelector(".dropdown-menu").classList.remove(showClass);
+  const dropdownMenu = targetDropdown.querySelector(".dropdown-menu");
+  
+  targetDropdown.classList.remove(showClass);
+  targetDropdown.querySelector(".dropdown-arrow").setAttribute("aria-expanded", "false");
+  dropdownMenu.classList.remove(showClass);
+  
+  setTimeout(() => {
+    if (!dropdownMenu.classList.contains(showClass)) {
+      dropdownMenu.style.visibility = 'hidden';
+    }
+  }, 300);
 }
 
 // Function to adjust the position of the dropdown menu relative to the navbar
